@@ -1,0 +1,284 @@
+@import 'bootstrap';
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
+/* css type */
+.normal {
+    background-color: #A8A77A;
+}
+
+.fire {
+    background-color: #EE8130!important;
+}
+
+.water {
+    background-color: #6390F0;
+}
+
+.electric {
+    background-color: #F7D02C;
+}
+
+.grass {
+    background-color: #7AC74C;
+}
+
+.ice {
+    background-color: #96D9D6;
+}
+
+.fighting {
+    background-color: #C22E28;
+}
+
+.poison {
+    background-color: #A33EA1;
+}
+
+.ground {
+    background-color: #E2BF65;
+}
+
+.flying {
+    background-color: #A98FF3;
+}
+
+.psychic {
+    background-color: #F95587;
+}
+
+.bug {
+    background-color: #A6B91A;
+}
+
+.rock {
+    background-color: #B6A136;
+}
+
+.ghost {
+    background-color: #735797;
+}
+
+.dragon {
+    background-color: #6F35FC;
+}
+
+.dark {
+    background-color: #705746;
+}
+
+.steel {
+    background-color: #B7B7CE;
+}
+
+.fairy {
+    background-color: #D685AD;
+}
+
+/* css */
+body {
+    --bg-color: rgba(255, 255, 255, .75);
+    background-image: linear-gradient(0deg, var(--bg-color), var(--bg-color)), url('/public/bg-pokemon.jpg');
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* css navbar */
+nav {
+    padding: 1rem;
+    border-radius: 1rem;
+    align-items: center;
+}
+
+.poke-logo {
+    margin-inline: 50px;
+    width: 25%;
+}
+
+.pokedex-logo {
+    color: #FFCC00 !important;
+    text-shadow: 2px 3px 0px #0075BE;
+    text-align: center;
+    font-size: 3rem;
+    color: #444;
+}
+
+.pokeball {
+    display: inline-block;
+    height: 0.6em;
+    width: 0.6em;
+    background-image: url('/public/pokeball.svg');
+}
+
+#set-gen {
+    color: #FFCC00 !important;
+    text-shadow: 1.5px 1.5px 0px #0075BE;
+    font-size: 1rem;
+
+}
+
+.gen-nav {
+    display: table;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, .2);
+    border-radius: 0.3rem;
+}
+
+.navigation-link {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    color: #333;
+    font-size: 1.3rem;
+    padding: 0.5rem 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    overflow: hidden;
+    transition: all .3s;
+}
+
+.navigation-link:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    left: 0;
+    bottom: 0;
+    background-color: #6c79db;
+    opacity: 0;
+    border-radius: 100px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: all .3s;
+}
+
+.navigation-link.active,
+.navigation-link:focus,
+.navigation-link:hover {
+    outline: none;
+    background-color: #eee;
+}
+
+.navigation-link.navigation-link.active:after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+/* css hidden nav */
+.nav-bl {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+}
+
+.fa-chevron-up, .fa-chevron-down{
+    animation-name: up-down;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes up-down {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.nav-bl a {
+    display: flex;
+    padding-top: 0;
+}
+
+#nav-btn:hover {
+    background-color: transparent;
+}
+
+.collapse {
+    align-items: flex-start;
+}
+
+/* css cards */
+.card {
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.trans-scale {
+    transition: all 0.3s;
+}
+
+.trans-scale:hover {
+    transform: scale(1.08, 1.08);
+}
+
+.card-img-top {
+    width: 75%;
+}
+
+.span-card {
+    background-color: #a0a0a0;
+}
+
+.text-container {
+    width: 200px; /* Larghezza massima del contenitore */
+    white-space: nowrap; /* Evita il wrapping del testo */
+    overflow: hidden; /* Nasconde il testo eccedente */
+    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione alla fine del testo eccedente */
+}
+
+/* media query */
+@media screen and (max-width: 768px) {
+
+    /* media nav */
+    .poke-logo {
+        width: 50%;
+    }
+
+    .navigation-link {
+        padding: 12px !important;
+    }
+
+    /* media cards */
+    .row {
+        justify-content: center !important;
+    }
+}
+
+
+.container1 {
+    display: flex;
+width: 99.361vw;
+height: 100vh;
+    overflow: hidden; /* Nasconde il contenuto in eccesso */
+}
+
+.half {
+    width: 50vw; /* Metà della larghezza della finestra */
+    height: 100vh; /* Altezza piena */
+    transition: transform 0.3s ease-in-out; /* Transizione per l'effetto di inclinazione */
+}
+
+.half:first-child {
+    background-color: #ff5733; /* Colore del primo div */
+    transform: rotate(20deg);
+}
+
+.half:last-child {
+    background-color: #33ff57; /* Colore del secondo div */
+    transform: rotate(20deg); /* Inclina il secondo div */
+}
