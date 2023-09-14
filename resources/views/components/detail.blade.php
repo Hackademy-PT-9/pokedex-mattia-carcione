@@ -1,4 +1,4 @@
-<main class="section-custom vh-100 pb-2"
+<main class="section-custom vh-100 pb-4"
     style="width: 100%;height:100%; background: linear-gradient(30deg, white 0%, white 50%, {{ $color }} 50%, {{ $color }} 100%);">
 
     {{-- logo pokemon che rimanda all'index --}}
@@ -9,7 +9,7 @@
     </div>
 
     {{-- logo pokedex che rimanda all'index --}}
-    <nav class="nav-bl z-1 d-none d-md-block">
+    <nav class="nav-bl z-1">
         <a href="{{ route('index') }}">
             <img src="/pokedex-icon-10.jpg" class="pokedex-nav" style="font-size: 45px"></img>
         </a>

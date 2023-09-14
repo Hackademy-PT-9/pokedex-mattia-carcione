@@ -327,4 +327,9 @@ nav {
     .div-sm {
         width: 100% !important;
     }
+
+    .pokedex-nav{
+            height: 1.5em;
+            width: 1.5em;
+    }
 }
