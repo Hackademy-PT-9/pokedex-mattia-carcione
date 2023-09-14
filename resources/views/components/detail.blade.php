@@ -29,7 +29,7 @@
                 <div>
                     <h5>Hp</h5>
                     <p class="fs-5">
-                    <span id="span-stat">
+                    <span class="span-stat">
                             {{ $pokemon->stats[0]['base_stat'] }}
                         </span>
                     </p>
@@ -39,7 +39,7 @@
                 <div>
                     <h5>Atk</h5>
                     <p class="fs-5">
-                        <span id="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[1]['base_stat'] }}
                         </span>
                     </p>
@@ -49,7 +49,7 @@
                 <div>
                     <h5>Def</h5>
                     <p class="fs-5">
-                        <span id="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[2]['base_stat'] }}
                         </span>
                     </p>
@@ -59,7 +59,7 @@
                 <div>
                     <h5>Sp.Atk</h5>
                     <p class="fs-5">
-                        <span id="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[3]['base_stat'] }}
                         </span>
                     </p>
@@ -69,7 +69,7 @@
                 <div>
                     <h5>Sp.Def</h5>
                     <p class="fs-5">
-                        <span id="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[4]['base_stat'] }}
                         </span>
                     </p>
@@ -79,7 +79,7 @@
                 <div>
                     <h5>Spe</h5>
                     <p class="fs-5">
-                        <span id="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[5]['base_stat'] }}
                         </span>
                     </p>

@@ -280,7 +280,7 @@ nav {
         2px 2px 0 #0075BE;
 }
 
-#span-stat {
+.span-stat {
     background-color: rgb(254, 202, 48);
     border: 4px solid rgb(51, 97, 162);
     border-radius: 40px;
