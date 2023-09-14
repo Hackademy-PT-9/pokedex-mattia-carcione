@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class RouteController extends Controller
 {
     protected static $generations = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
-    
+
     protected static $colorType = [
         'normal' => '#A8A77A',
         'fire' => '#EE8130',
@@ -39,7 +39,7 @@ class RouteController extends Controller
         if ($uri == '' || $uri == 'I') {
             return $this->setGeneration(1, 151);
         } elseif ($uri == 'II') {
-            return $this->setGeneration(152, 251,$uri);
+            return $this->setGeneration(152, 251, $uri);
         } elseif ($uri == 'III') {
             return $this->setGeneration(252, 386, $uri);
         } elseif ($uri == 'IV') {
@@ -65,10 +65,7 @@ class RouteController extends Controller
     }
     public function show($pokemonName)
     {
-        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
-        Pokemon::findOrFail($pokemon->id);
-        $color = $this->getTypeColor($pokemonName);
-        return view('show', compact('pokemon', 'color'));
+        return $this->pokemonExists($pokemonName);
     }
 
     public function setTypeColor($type)
@@ -76,8 +73,19 @@ class RouteController extends Controller
         return self::$colorType[$type];
     }
 
-    public function getTypeColor ($pokemonName){
+    public function getTypeColor($pokemonName)
+    {
         $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
         return $this->setTypeColor($pokemon->type);
+    }
+
+    public function pokemonExists ($pokemonName) {
+        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
+
+        if ($pokemon) {
+            $color = $this->getTypeColor($pokemonName);
+            return view('show', compact('pokemon', 'color'));
+        } else 
+            abort(404);
     }
 }
