@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 //rotte principali
 Route::get('/{uri?}', [RouteController::class, 'index'])->name('index');
-Route::get('/show/{pokemon}', [RouteController::class, 'show'])->name('show');
+Route::get('/Pokemon/{pokemon}', [RouteController::class, 'show'])->name('show');
 
 //rotte per inserire i dati dei pokemon nel database
 Route::get('/fetch/store', [PokemonController::class, 'fetchAndStorePokemonData']);

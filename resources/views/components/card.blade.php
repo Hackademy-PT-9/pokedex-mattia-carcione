@@ -4,7 +4,7 @@
         {{-- card --}}
         @foreach ($pokemonData as $pokemon)
             <div class="card col-md-3 me-1 mb-1 trans-scale {{ $pokemon->type }}" style="width: 15rem; height: 22rem;">
-                <a href="{{ route('show', $pokemon) }}" class="nav-link">
+                <a href="{{ route('show', $pokemon->name) }}" class="nav-link">
                     <div class="d-flex justify-content-between">
                         <p>
                             <span>#</span>
