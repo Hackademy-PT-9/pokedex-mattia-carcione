@@ -32,9 +32,9 @@ class RouteController extends Controller
 
     public function index($uri = '')
     {
-        return $this->getPokemonGeneration($uri);
+        return $this->getGeneration($uri);
     }
-    public function getPokemonGeneration($uri)
+    public function getGeneration($uri)
     {
         if ($uri == '' || $uri == 'I') {
             return $this->setGeneration(1, 151);
