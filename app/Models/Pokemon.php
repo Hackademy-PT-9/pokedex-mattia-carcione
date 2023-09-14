@@ -16,4 +16,9 @@ class Pokemon extends Model
         'type',
         'image_url',
     ];
+
+    public function getStatsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }

@@ -5,30 +5,29 @@ let arrowUp = document.getElementById('arrow-up');
 let arrowDown = document.getElementById('arrow-down');
 let myButton = document.getElementById('nav-btn');
 
-// Aggiungo un evento di click al bottone
+// evento che attiva/disattiva la freccia
 myButton.addEventListener('click', function () {
     if (!arrowUp.classList.contains('hidden')) {
-        arrowUp.classList.add('hidden');// Nasconde la freccia
-        arrowDown.classList.remove('hidden');// Nasconde la freccia
+        arrowUp.classList.add('hidden');
+        arrowDown.classList.remove('hidden');
     } else {
-        arrowUp.classList.remove('hidden');// Mostra la freccia
-        arrowDown.classList.add('hidden');// Mostra la freccia
+        arrowUp.classList.remove('hidden');
+        arrowDown.classList.add('hidden');
     }
 });
 
 let nav = document.getElementById('nav');
 let windowHeight = window.innerHeight;
 
+// evento che attiva/disattiva la navbar
 window.addEventListener('scroll', function () {
     let scrollPosition = window.scrollY;
 
-    // Calcola la posizione in cui far apparire la navbar
-    let threshold = windowHeight / 2; // Metà della finestra
+    let threshold = windowHeight / 2; 
 
-    // Se la posizione di scroll supera la soglia
     if (scrollPosition > threshold) {
-        nav.classList.remove('hidden'); // Mostra la navbar
+        nav.classList.remove('hidden'); 
     } else {
-        nav.classList.add('hidden'); // Nascondi la navbar
+        nav.classList.add('hidden'); 
     }
 });

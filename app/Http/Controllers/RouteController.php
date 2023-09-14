@@ -10,55 +10,66 @@ class RouteController extends Controller
     protected static $generations = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
     public function index($uri = '')
     {
+        return $this->getPokemonGeneration($uri);
+    }
+    public function getPokemonGeneration($uri)
+    {
         if ($uri == '' || $uri == 'I') {
-            $idMin = 2;
-            $idMax = 152;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => 'I', 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(2, 152);
         } elseif ($uri == 'II') {
-            $idMin = 153;
-            $idMax = 251;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(153, 251,$uri);
         } elseif ($uri == 'III') {
-            $idMin = 252;
-            $idMax = 386;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(252, 386, $uri);
         } elseif ($uri == 'IV') {
-            $idMin = 387;
-            $idMax = 493;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(387, 493, $uri);
         } elseif ($uri == 'V') {
-            $idMin = 494;
-            $idMax = 649;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(494, 649, $uri);
         } elseif ($uri == 'VI') {
-            $idMin = 650;
-            $idMax = 721;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(650, 721, $uri);
         } elseif ($uri == 'VII') {
-            $idMin = 722;
-            $idMax = 809;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(722, 809, $uri);
         } elseif ($uri == 'VIII') {
-            $idMin = 810;
-            $idMax = 905;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(810, 905, $uri);
         } elseif ($uri == 'IX') {
-            $idMin = 906;
-            $idMax = 1008;
-            $pokemonData = Pokemon::whereBetween('id', [$idMin, $idMax])->get();
-            return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData]);
+            return $this->setGeneration(906, 1008, $uri);
+        } else {
+            abort(404);
         }
     }
+    public function setGeneration($a, $b, $uri = 'I')
+    {
+        $pokemonData = Pokemon::whereBetween('id', [$a, $b])->get();
+        return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
+    }
+    public function show(Pokemon $pokemon)
+    {
+        $color = $this->setTypeColor($pokemon->type);
+        return view('show', compact('pokemon', 'color'));
+    }
 
-    public function show(Pokemon $pokemon){
-        return view('show', compact('pokemon'));
+    public function setTypeColor($type)
+    {
+        $color = [
+            'normal' => '#A8A77A',
+            'fire' => '#EE8130',
+            'water' => '#6390F0',
+            'electric' => '#F7D02C',
+            'grass' => '#7AC74C',
+            'ice' => '#96D9D6',
+            'fighting' => '#C22E28',
+            'poison' => '#A33EA1',
+            'ground' => '#E2BF65',
+            'flying' => '#A98FF3',
+            'psychic' => '#F95587',
+            'bug' => '#A6B91A',
+            'rock' => '#B6A136',
+            'ghost' => '#735797',
+            'dragon' => '#6F35FC',
+            'dark' => '#705746',
+            'steel' => '#B7B7CE',
+            'fairy' => '#D685AD',
+        ];
+
+        return $color[$type];
     }
 }

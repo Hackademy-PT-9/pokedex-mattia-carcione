@@ -1,6 +1,5 @@
 <x-main>
-    <x-navbar :uri="$uri" :generations="$generations"/>
-    <main>
-            <x-card :pokemonData="$pokemonData" />
-    </main>
+    <x-navbar :uri="$uri" :generations="$generations" />
+
+    <x-card :pokemonData="$pokemonData" />
 </x-main>

@@ -1,22 +1,44 @@
-<div class="container">
+<main class="container mb-5">
     <div class="row justify-content-start">
+
+        {{-- card --}}
         @foreach ($pokemonData as $pokemon)
-            {{-- il bg dovrà essere in base al tipo --}}
-            <div class="card col-md-3 mx-1 mb-3 trans-scale {{ $pokemon->type }}" style="width: 15rem; height: 22rem;">
-                <a href="{{ route('show', ['pokemon' => $pokemon]) }}">
-                    <div class="text-center py-3">
+            <div class="card col-md-3 me-1 mb-1 trans-scale {{ $pokemon->type }}" style="width: 15rem; height: 22rem;">
+                <a href="{{ route('show', $pokemon) }}" class="nav-link">
+                    <div class="d-flex justify-content-between">
+                        <p>
+                            <span>#</span>
+                            {{ $pokemon->pokedex_number }}
+                        </p>
+                        <p>
+                            <span>{{ $pokemon->type }}</span>
+                        </p>
+                    </div>
+
+                    <div class="text-center">
                         <img src="{{ $pokemon->image_url }}" class="card-img-top" alt="{{ $pokemon->name }}">
                     </div>
 
-                    <div class="card-body text-center text-dark border-top">
-                        <h5 class="card-title pb-2">{{ $pokemon->name }}</h5>
-                        <span class="rounded-pill p-1 opacity-75 span-card">#{{ $pokemon->pokedex_number }}</span>
-                        <p class="card-text pt-3 text-container">
-                            {{ $pokemon->pokedex_description }}
-                        </p>
+                    <div class="text-center text-container">
+                        <h2 class="card-title">{{ $pokemon->name }}</h2>
+                        <div class="stats fs-6 pt-3">
+                            <div>
+                                <p>Attack</p>
+                                <h5>{{ $pokemon->stats[1]['base_stat'] }}</h5>
+                            </div>
+                            <div>
+                                <p>Defense</p>
+                                <h5>{{ $pokemon->stats[2]['base_stat'] }}</h5>
+                            </div>
+                            <div>
+                                <p>Speed</p>
+                                <h5>{{ $pokemon->stats[5]['base_stat'] }}</h5>
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>
         @endforeach
+        
     </div>
-</div>
+</main>
