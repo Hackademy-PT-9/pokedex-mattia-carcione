@@ -63,15 +63,21 @@ class RouteController extends Controller
         $pokemonData = Pokemon::whereBetween('id', [$a, $b])->get();
         return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
     }
-    public function show($pokemonData)
+    public function show($pokemonName)
     {
-        $pokemon = Pokemon::all()->where('name', $pokemonData)->first();
-        $color = $this->setTypeColor($pokemon->type);
+        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
+        Pokemon::findOrFail($pokemon->id);
+        $color = $this->getTypeColor($pokemonName);
         return view('show', compact('pokemon', 'color'));
     }
 
     public function setTypeColor($type)
     {
         return self::$colorType[$type];
+    }
+
+    public function getTypeColor ($pokemonName){
+        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
+        return $this->setTypeColor($pokemon->type);
     }
 }
