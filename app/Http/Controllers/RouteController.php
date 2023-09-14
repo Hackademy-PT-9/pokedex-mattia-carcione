@@ -15,23 +15,23 @@ class RouteController extends Controller
     public function getPokemonGeneration($uri)
     {
         if ($uri == '' || $uri == 'I') {
-            return $this->setGeneration(2, 152);
+            return $this->setGeneration(1, 151);
         } elseif ($uri == 'II') {
-            return $this->setGeneration(153, 251,$uri);
+            return $this->setGeneration(152, 250,$uri);
         } elseif ($uri == 'III') {
-            return $this->setGeneration(252, 386, $uri);
+            return $this->setGeneration(251, 385, $uri);
         } elseif ($uri == 'IV') {
-            return $this->setGeneration(387, 493, $uri);
+            return $this->setGeneration(386, 492, $uri);
         } elseif ($uri == 'V') {
-            return $this->setGeneration(494, 649, $uri);
+            return $this->setGeneration(493, 648, $uri);
         } elseif ($uri == 'VI') {
-            return $this->setGeneration(650, 721, $uri);
+            return $this->setGeneration(649, 720, $uri);
         } elseif ($uri == 'VII') {
-            return $this->setGeneration(722, 809, $uri);
+            return $this->setGeneration(721, 808, $uri);
         } elseif ($uri == 'VIII') {
-            return $this->setGeneration(810, 905, $uri);
+            return $this->setGeneration(809, 904, $uri);
         } elseif ($uri == 'IX') {
-            return $this->setGeneration(906, 1008, $uri);
+            return $this->setGeneration(905, 1008, $uri);
         } else {
             abort(404);
         }
