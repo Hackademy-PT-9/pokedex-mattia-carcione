@@ -51,7 +51,7 @@ class PokemonController extends Controller
 
             $pokedexNumber = $pokedexData['pokedex_numbers'][0]['entry_number'];
             $pokedexDescription = $pokedexData['flavor_text_entries'][0]['flavor_text'];
-
+            // sistema la funzione!
             Pokemon::create([
                 'name' => $pokemonData['name'],
                 'pokedex_number' => $pokedexNumber,
