@@ -60,7 +60,7 @@ class RouteController extends Controller
     }
     public function setGeneration($a, $b, $uri = 'I')
     {
-        $pokemonData = Pokemon::whereBetween('id', [$a, $b])->get();
+        $pokemonData = Pokemon::whereBetween('pokedex_number', [$a, $b])->get();
         return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
     }
     public function show($pokemonName)
@@ -76,16 +76,17 @@ class RouteController extends Controller
     public function getTypeColor($pokemonName)
     {
         $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
-        return $this->setTypeColor($pokemon->type);
+        return $this->setTypeColor($pokemon->type_1);
     }
 
-    public function pokemonExists ($pokemonName) {
+    public function pokemonExists($pokemonName)
+    {
         $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
 
         if ($pokemon) {
             $color = $this->getTypeColor($pokemonName);
             return view('show', compact('pokemon', 'color'));
-        } else 
+        } else
             abort(404);
     }
 }

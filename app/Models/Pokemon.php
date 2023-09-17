@@ -13,9 +13,16 @@ class Pokemon extends Model
         'pokedex_number',
         'pokedex_description',
         'stats',
-        'type',
+        'type_1',
+        'type_2',
         'image_url',
+        'generation_id',
     ];
+
+    public function generation()
+    {
+        return $this->belongsTo(Generation::class);
+    }
 
     public function getStatsAttribute($value)
     {

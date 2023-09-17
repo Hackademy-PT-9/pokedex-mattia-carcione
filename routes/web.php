@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenerationController;
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,4 @@ Route::get('/pokemon/{pokemon}', [RouteController::class, 'show'])->name('show')
 
 //rotte per inserire i dati dei pokemon nel database
 Route::get('/fetch/store', [PokemonController::class, 'fetchAndStorePokemonData']);
+Route::get('/fetch/gen', [GenerationController::class, 'fetchAndStoreGenerationData']);

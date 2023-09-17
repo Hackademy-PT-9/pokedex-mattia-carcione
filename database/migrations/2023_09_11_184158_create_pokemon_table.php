@@ -16,7 +16,8 @@ return new class extends Migration {
             $table->integer('pokedex_number');
             $table->text('pokedex_description');
             $table->json('stats');
-            $table->string('type');
+            $table->string('type_1');
+            $table->string('type_2')->nullable();
             $table->string('image_url');
             $table->timestamps();
         });

@@ -29,7 +29,7 @@
                 <div>
                     <h5>Hp</h5>
                     <p class="fs-5">
-                    <span class="span-stat">
+                        <span class="span-stat">
                             {{ $pokemon->stats[0]['base_stat'] }}
                         </span>
                     </p>
@@ -92,8 +92,14 @@
         </div>
 
         <div class="row">
-            <div class="col-12">
-                <img src="{{ $pokemon->image_url }}" style="width: 350px; height: 350px" alt="">
+            <div class="col-12 w-100 d-flex justify-content-center">
+                <img src="{{ $pokemon->image_url }}" style="width: 250px;" alt="">
+            </div>
+            <div class=" text-center mb-5">
+                <span class="span-stat rounded-4 px-2 ">{{ $pokemon->type_1 }}</span>
+                @if ($pokemon->type_2 !== 'none')
+                    <span class="span-stat rounded-4 px-2">{{ $pokemon->type_2 }}</span>
+                @endif
             </div>
         </div>
     </section>

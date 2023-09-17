@@ -3,7 +3,7 @@
 
         {{-- card --}}
         @foreach ($pokemonData as $pokemon)
-            <div class="card col-md-3 me-1 mb-1 trans-scale {{ $pokemon->type }}" style="width: 15rem; height: 22rem;">
+            <div class="card col-md-3 me-1 mb-1 trans-scale {{ $pokemon->type_1 }}" style="width: 15rem; height: 22rem;">
                 <a href="{{ route('show', $pokemon->name) }}" class="nav-link">
                     <div class="d-flex justify-content-between">
                         <p>
@@ -11,7 +11,7 @@
                             {{ $pokemon->pokedex_number }}
                         </p>
                         <p>
-                            <span>{{ $pokemon->type }}</span>
+                            <span>{{ $pokemon->type_1 }}</span>
                         </p>
                     </div>
 
