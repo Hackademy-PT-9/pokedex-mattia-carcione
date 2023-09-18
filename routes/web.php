@@ -21,5 +21,5 @@ Route::get('/{uri?}', [RouteController::class, 'index'])->name('index');
 Route::get('/pokemon/{pokemon}', [RouteController::class, 'show'])->name('show');
 
 //rotte per inserire i dati dei pokemon nel database
-Route::get('/fetch/store', [PokemonController::class, 'fetchAndStorePokemonData']);
-Route::get('/fetch/gen', [GenerationController::class, 'fetchAndStoreGenerationData']);
+Route::get('/fetch/pokemon', [PokemonController::class, 'fetchAndStorePokemonData']);
+Route::get('/fetch/generation', [GenerationController::class, 'fetchAndStoreGenerationData']);

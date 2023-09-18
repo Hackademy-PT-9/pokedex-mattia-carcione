@@ -2,13 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Generation;
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
 {
-    protected static $generations = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
-
+    protected static $generations = [
+        'I' => 1,
+        'II' => 2,
+        'III' => 3,
+        'IV' => 4,
+        'V' => 5,
+        'VI' => 6,
+        'VII' => 7,
+        'VIII' => 8,
+        'IX' => 9,
+    ];
     protected static $colorType = [
         'normal' => '#A8A77A',
         'fire' => '#EE8130',
@@ -30,63 +40,39 @@ class RouteController extends Controller
         'fairy' => '#D685AD',
     ];
 
+    //index's methods
     public function index($uri = '')
     {
         return $this->getGeneration($uri);
     }
     public function getGeneration($uri)
     {
-        if ($uri == '' || $uri == 'I') {
-            return $this->setGeneration(1, 151);
-        } elseif ($uri == 'II') {
-            return $this->setGeneration(152, 251, $uri);
-        } elseif ($uri == 'III') {
-            return $this->setGeneration(252, 386, $uri);
-        } elseif ($uri == 'IV') {
-            return $this->setGeneration(387, 493, $uri);
-        } elseif ($uri == 'V') {
-            return $this->setGeneration(494, 649, $uri);
-        } elseif ($uri == 'VI') {
-            return $this->setGeneration(650, 721, $uri);
-        } elseif ($uri == 'VII') {
-            return $this->setGeneration(722, 809, $uri);
-        } elseif ($uri == 'VIII') {
-            return $this->setGeneration(810, 905, $uri);
-        } elseif ($uri == 'IX') {
-            return $this->setGeneration(906, 1008, $uri);
-        } else {
-            abort(404);
+        if ($uri === '') {
+            $uri = "gen=1";
         }
-    }
-    public function setGeneration($a, $b, $uri = 'I')
-    {
-        $pokemonData = Pokemon::whereBetween('pokedex_number', [$a, $b])->get();
+        $pokemonGeneration = Generation::where('id', preg_replace("/[^0-9]/", "", $uri))->firstOrFail();
+        $pokemonData = $pokemonGeneration->pokemon;
         return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
     }
+
+    //show's methods
     public function show($pokemonName)
     {
-        return $this->pokemonExists($pokemonName);
+        return $this->getColorAndPokemon($pokemonName);
     }
-
-    public function setTypeColor($type)
-    {
-        return self::$colorType[$type];
-    }
-
-    public function getTypeColor($pokemonName)
-    {
-        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
-        return $this->setTypeColor($pokemon->type_1);
-    }
-
-    public function pokemonExists($pokemonName)
+    public function getColorAndPokemon($pokemonName)
     {
         $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
 
         if ($pokemon) {
-            $color = $this->getTypeColor($pokemonName);
+            $color = $this->setColor($pokemonName);
             return view('show', compact('pokemon', 'color'));
         } else
             abort(404);
+    }
+    public function setColor($pokemonName)
+    {
+        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
+        return self::$colorType[$pokemon->type_1];
     }
 }

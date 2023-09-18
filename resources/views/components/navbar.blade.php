@@ -13,11 +13,10 @@
                 select gen:
             </span>
         </div>
-
-        <div class="gen-nav" id="nav-gen">
-            @foreach ($generations as $generation)
-                <a class="navigation-link  @if ($uri === $generation) active @endif"
-                    href="{{ route('index', ['uri' => $generation]) }}">{{ $generation }}</a>
+        <div class="gen-nav mt-4">
+            @foreach ($generations as $generation => $number)
+                <a class="navigation-link @if ($uri == "gen=$number") active @endif"
+                    href="{{ route('index', ['uri' => "gen=$number"]) }}">{{ $generation }}</a>
             @endforeach
         </div>
     </div>
@@ -31,11 +30,11 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" id="nav-btn">
         <i class="pokeball" style="font-size: 45px"></i>
     </a>
-    
+
     <div class="collapse gen-nav" id="navbarSupportedContent">
-        @foreach ($generations as $generation)
-            <a class="navigation-link @if ($uri === $generation) active @endif"
-                href="{{ route('index', ['uri' => $generation]) }}">{{ $generation }}</a>
+        @foreach ($generations as $generation => $number)
+            <a class="navigation-link @if ($uri == "gen=$number") active @endif"
+                href="{{ route('index', ['uri' => "gen=$number"]) }}">{{ $generation }}</a>
         @endforeach
     </div>
 </nav>

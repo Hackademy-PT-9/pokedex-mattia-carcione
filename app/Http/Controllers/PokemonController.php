@@ -48,19 +48,17 @@ class PokemonController extends Controller
         foreach ($pokemonList['results'] as $pokemon) {
             $pokemonData = Http::get($pokemon['url'])->json();
             $pokedexData = Http::get("https://pokeapi.co/api/v2/pokemon-species/{$pokemonData['id']}")->json();
+            $generation = Http::get("{$pokedexData['generation']['url']}")->json();
 
-            $pokedexNumber = $pokedexData['pokedex_numbers'][0]['entry_number'];
-            $pokedexDescription = $pokedexData['flavor_text_entries'][0]['flavor_text'];
-            // sistema la funzione!
             Pokemon::create([
                 'name' => $pokemonData['name'],
-                'pokedex_number' => $pokedexNumber,
-                'pokedex_description' => $pokedexDescription,
+                'pokedex_number' => $pokedexData['pokedex_numbers'][0]['entry_number'],
+                'pokedex_description' => $pokedexData['flavor_text_entries'][0]['flavor_text'],
                 'stats' => json_encode($pokemonData['stats']),
                 'type_1' => $pokemonData['types'][0]['type']['name'],
                 'type_2' => $this->setSecondType($pokemonData),
                 'image_url' => $pokemonData['sprites']['front_default'],
-                'generation_id' => 1
+                'generation_id' => $generation['id']
             ]);
         }
 

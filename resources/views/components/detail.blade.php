@@ -9,11 +9,11 @@
     </div>
 
     {{-- logo pokedex che rimanda all'index --}}
-    <nav class="nav-bl z-1">
-        <a href="{{ route('index') }}">
+    <div class="nav-bl z-1">
+        <a href="{{ route('index', ['uri' => "gen=$pokemon->generation_id"]) }}">
             <img src="/pokedex-icon-10.jpg" class="pokedex-nav" style="font-size: 45px"></img>
         </a>
-    </nav>
+    </div>
 
     {{-- section con il dettaglio --}}
     <section
