@@ -23,7 +23,7 @@
 </nav>
 
 {{-- navbar che appare on scroll down --}}
-<nav class="nav-bl hidden z-1" id="nav">
+<div class="nav-bl hidden z-1" id="nav">
     <i class="fa-solid fa-chevron-up" id="arrow-up"></i>
     <i class="fa-solid fa-chevron-down hidden" id="arrow-down"></i>
     <a class="navigation-link" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -37,4 +37,4 @@
                 href="{{ route('index', ['uri' => "generation-$number"]) }}">{{ $generation }}</a>
         @endforeach
     </div>
-</nav>
+</div>
