@@ -1,3 +1,3 @@
 <x-main>
-    <x-detail :pokemon="$pokemon" :color="$color" />
+    <x-detail :pokemon="$pokemonData" :color="$color" />
 </x-main>

@@ -41,38 +41,30 @@ class RouteController extends Controller
     ];
 
     //index's methods
-    public function index($uri = '')
+    public function index($uri = 'generation-1')
     {
-        return $this->getGeneration($uri);
+        $pokemonData = $this->getGeneration($uri);
+        return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
     }
     public function getGeneration($uri)
     {
-        if ($uri === '') {
-            $uri = "gen=1";
-        }
         $pokemonGeneration = Generation::where('id', preg_replace("/[^0-9]/", "", $uri))->firstOrFail();
         $pokemonData = $pokemonGeneration->pokemon;
-        return view('index', ['uri' => $uri, 'generations' => self::$generations, 'pokemonData' => $pokemonData,]);
+        return $pokemonData;
     }
 
     //show's methods
     public function show($pokemonName)
     {
-        return $this->getColorAndPokemon($pokemonName);
+        $pokemonData = Pokemon::all()->where('name', $pokemonName)->first();
+        return $this->getColorAndPokemon($pokemonData);
     }
-    public function getColorAndPokemon($pokemonName)
+    public function getColorAndPokemon($pokemonData)
     {
-        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
-
-        if ($pokemon) {
-            $color = $this->setColor($pokemonName);
-            return view('show', compact('pokemon', 'color'));
+        if ($pokemonData) {
+            $color = self::$colorType[$pokemonData->type_1];
+            return view('show', compact('pokemonData', 'color'));
         } else
             abort(404);
-    }
-    public function setColor($pokemonName)
-    {
-        $pokemon = Pokemon::all()->where('name', $pokemonName)->first();
-        return self::$colorType[$pokemon->type_1];
     }
 }

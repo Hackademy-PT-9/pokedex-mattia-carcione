@@ -15,8 +15,8 @@
         </div>
         <div class="gen-nav mt-4">
             @foreach ($generations as $generation => $number)
-                <a class="navigation-link @if ($uri == "gen=$number") active @endif"
-                    href="{{ route('index', ['uri' => "gen=$number"]) }}">{{ $generation }}</a>
+                <a class="navigation-link @if ($uri == "generation-$number") active @endif"
+                    href="{{ route('index', ['uri' => "generation-$number"]) }}">{{ $generation }}</a>
             @endforeach
         </div>
     </div>
@@ -33,8 +33,8 @@
 
     <div class="collapse gen-nav" id="navbarSupportedContent">
         @foreach ($generations as $generation => $number)
-            <a class="navigation-link @if ($uri == "gen=$number") active @endif"
-                href="{{ route('index', ['uri' => "gen=$number"]) }}">{{ $generation }}</a>
+            <a class="navigation-link @if ($uri == "generation-$number") active @endif"
+                href="{{ route('index', ['uri' => "generation-$number"]) }}">{{ $generation }}</a>
         @endforeach
     </div>
 </nav>
